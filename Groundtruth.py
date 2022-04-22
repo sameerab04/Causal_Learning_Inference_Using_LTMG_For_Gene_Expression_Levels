@@ -21,18 +21,25 @@ for line in lines:
             edges.append((nodes[0],nodes[1]))
     count += 1
 
-G = nx.DiGraph()
+G = nx.Graph()
 G.add_nodes_from(nodes)
 G.add_edges_from(edges)
 
+gene_names = []
+f = open(sys.argv[2])
+for row in f:
+    gene_names.append(row.strip())
+
 import matplotlib.pyplot as plt
-nx.draw(G, with_labels=True)
-plt.show()
+nx.draw(G, with_labels=True, pos = nx.circular_layout(G))
 
 # https://fentechsolutions.github.io/CausalDiscoveryToolbox/html/metrics.html
 
-A = nx.to_numpy_matrix(G)
+A = nx.to_numpy_matrix(G, gene_names)
 
-filename='adjacency_matrix.txt'
+print(G.nodes)
+filename ='adjacency_matrix2.txt'
+
 np.savetxt(filename, A, fmt='%d')
 
+plt.show()
