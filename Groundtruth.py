@@ -4,27 +4,22 @@ import numpy as np
 import sys
 
 lines = []
-with open(sys.argv[1], 'r') as f:
-    lines = f.readlines()
+f = open(sys.argv[1])
+for row in f:
+    lines.append((row))
 
 nodes = []
 edges = []
 
-count = 0
+count = 1
 
 length = len(lines)
 for line in lines:
+    if count >= 2:
+        nodes = line.strip().split(',')
+        if nodes[0] != nodes [1]:
+            edges.append((nodes[0],nodes[1]))
     count += 1
-    print(line)
-    if count == 2:
-        nodes = line.strip().split(';')
-        print(nodes)
-    if count > 4 and count < (length):
-        temp = []
-        temp = line.strip().split(' ')
-        
-        edges.append((temp[1], temp[3]))
-        print(edges)
 
 G = nx.DiGraph()
 G.add_nodes_from(nodes)
