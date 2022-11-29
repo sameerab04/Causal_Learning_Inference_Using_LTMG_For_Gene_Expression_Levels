@@ -1,4 +1,4 @@
-CS 1640: Bioinformatics Software Design
+# CS 1640: Bioinformatics Software Design
 
 A prior way to explore the statistical dependencies between genes in single-cell gene expression
 datasets is to use multivariate information (MVI). Single-cell datasets are large enough to allow
